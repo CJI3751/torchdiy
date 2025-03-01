@@ -11,6 +11,7 @@ from . import rnn
 from . import gru
 from . import attention
 from . import transformer
+from . import embed
 
 Module = nn.Module
 Dropout = dropout.Dropout # nn.Dropout
@@ -22,11 +23,13 @@ CrossEntropyLoss = loss.CrossEntropyLoss
 MaxPool2d = cnn.MaxPool2d
 Conv2d = nn.Conv2d # 速度的問題，使用 Conv2d = cnn.Conv2d 會變得很慢，所以還是維持用 nn.Conv2d
 
-# RNN = rnn.RNN
+# RNN = nn.RNN
 RNN = rnn.RNN
-GRU = gru.GRU
-# LSTM = rnn.LSTM
-Embedding = nn.Embedding
+GRU = nn.GRU
+# GRU = gru.GRU
+LSTM = nn.LSTM
+# Embedding = nn.Embedding
+Embedding = embed.Embedding
 
 MultiheadAttention = attention.MultiheadAttention
 TransformerDecoderLayer = transformer.TransformerDecoderLayer
