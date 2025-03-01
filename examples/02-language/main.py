@@ -6,7 +6,7 @@ from data_utils import Dictionary, Corpus
 
 from torch.nn.utils import clip_grad_norm_
 
-import torch0 as torch
+import torchdiy as torch
 nn = torch.nn
 
 # Device configuration
