@@ -1,1 +1,1 @@
-PYTHONPATH=. pytest -v
+pytest --verbose

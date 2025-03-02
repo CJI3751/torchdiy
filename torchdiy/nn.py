@@ -13,6 +13,8 @@ from . import attention
 from . import transformer
 from . import embed
 
+functional = nn.functional
+
 Module = nn.Module
 Dropout = dropout.Dropout # nn.Dropout
 
