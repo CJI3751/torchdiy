@@ -3,7 +3,7 @@ from torchdiy.transformers import GPT2Config, GPT2Tokenizer, GPT2LMHeadModel
 
 def main():
     config = GPT2Config.from_pretrained("gpt2")
-    model = GPT2LMHeadModel(config)
+    model = GPT2LMHeadModel.from_pretrained("gpt2")
     tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 
     # 設定輸入文本
