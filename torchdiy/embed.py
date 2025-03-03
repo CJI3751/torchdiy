@@ -57,8 +57,8 @@ class Embedding(nn.Module):
     """
     
     def __init__(self, 
-                 num_embeddings: int, 
-                 embedding_dim: int, 
+                 num_embeddings: int, # 例如：字典大小（詞彙數量）
+                 embedding_dim: int,  # 例如：嵌入向量的維度
                  padding_idx: Optional[int] = None,
                  max_norm: Optional[float] = None,
                  norm_type: float = 2.0, 
@@ -75,7 +75,7 @@ class Embedding(nn.Module):
         self.sparse = sparse
         
         # 創建嵌入權重
-        self.weight = nn.Parameter(torch.Tensor(num_embeddings, embedding_dim))
+        self.weight = nn.Parameter(torch.Tensor(num_embeddings, embedding_dim)) # 例如：詞彙數量*嵌入向量的維度
         
         # 初始化權重
         self.reset_parameters()
