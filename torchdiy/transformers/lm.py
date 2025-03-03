@@ -109,3 +109,24 @@ def generate(
             break
 
     return generated
+
+class CausalLMModel(transformers.PreTrainedModel):
+    def __init__(self, config):
+        super().__init__(config)
+        self.config = config
+
+    def generate(
+        self,
+        input_ids,
+        attention_mask=None,
+        max_length=50,
+        num_return_sequences=1,
+        temperature=1.0,
+        top_k=0,
+        top_p=0.0,
+        do_sample=False,
+        pad_token_id=None,
+        eos_token_id=None,
+        no_repeat_ngram_size=0,
+    ):
+        return generate(self, self.tokenizer, input_ids, attention_mask, max_length, num_return_sequences, temperature, top_k, top_p, do_sample, pad_token_id, eos_token_id, no_repeat_ngram_size)

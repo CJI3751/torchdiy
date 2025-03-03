@@ -7,7 +7,7 @@ AutoTokenizer = transformers.AutoTokenizer
 AutoConfig = transformers.AutoConfig
 # AutoModelForCausalLM = transformers.AutoModelForCausalLM
 
-class AutoModelForCausalLM:
+class AutoModelForCausalLM():
     def __init__(self, model, model_name):
         self.model = model
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
