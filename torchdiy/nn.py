@@ -27,7 +27,7 @@ Conv2d = nn.Conv2d # 速度的問題，使用 Conv2d = cnn.Conv2d 會變得很�
 
 # RNN = nn.RNN
 RNN = rnn.RNN
-GRU = nn.GRU
+GRU = rnn.GRU
 # GRU = gru.GRU
 LSTM = nn.LSTM
 # Embedding = nn.Embedding
