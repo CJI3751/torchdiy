@@ -108,6 +108,9 @@ class Tensor:
         out._backward = _backward
 
         return out
+    
+    def numpy(self):
+        return self.data
 
     def cross_entropy(self, yb):
         log_probs = self.log() # log (q)
