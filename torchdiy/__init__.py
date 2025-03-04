@@ -10,6 +10,7 @@ from . import utils
 from torch import *
 from torch.utils import *
 from . import transformers
+from .tensor import Tensor
 
 # __all__ = ['nn', 'optim', 'utils', 'logsumexp']
-__all__ = ['nn', 'optim', 'utils', 'logsumexp']
+__all__ = ['nn', 'optim', 'utils', 'logsumexp', 'Tensor']
