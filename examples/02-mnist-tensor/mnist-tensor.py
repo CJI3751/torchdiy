@@ -1,5 +1,6 @@
+import torchdiy
 from torchdiy import Tensor
-import torch
+# import torch
 import torchvision
 import torchvision.transforms as transforms
 import numpy as np
@@ -31,12 +32,12 @@ def forward(X, Y, W):
 batch_size = 32
 steps = 20000
 
-X = Tensor(train_images); Y = Tensor(y_train) # 全部資料
+X = Tensor(train_images, requires_grad=True); Y = Tensor(y_train, requires_grad=True) # 全部資料
 # new initialized weights for gradient descent
 Wb = Tensor(np.random.randn(784, 10))
 for step in range(steps):
     ri = np.random.permutation(train_images.shape[0])[:batch_size]
-    Xb, yb = Tensor(train_images[ri]), Tensor(y_train[ri]) # Batch 資料
+    Xb, yb = Tensor(train_images[ri], requires_grad=True), Tensor(y_train[ri], requires_grad=True) # Batch 資料
     lossb = forward(Xb, yb, Wb)
     lossb.backward()
     if step % 1000 == 0 or step == steps-1:

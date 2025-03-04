@@ -5,7 +5,8 @@ class Tensor:
     def __init__(self, data, _children=(), _op='', requires_grad=False):
         self.data = np.array(data)
         self.requires_grad = requires_grad
-        self.grad = np.zeros(self.data.shape) if requires_grad else None
+        # self.grad = np.zeros(self.data.shape) if requires_grad else None
+        self.grad = np.zeros(self.data.shape) # 不管 requires_grad 值爲何，都創建 grad (這樣比較簡單)
         # internal variables used for autograd graph construction
         self._backward = lambda: None
         self._prev = set(_children)
@@ -165,4 +166,4 @@ class Tensor:
         return other * self**-1
 
     def __repr__(self):
-        return f"Tensor(data={self.data}, grad={self.grad})"
+        return f"Tensor(data={self.data}, grad={self.grad}) requires_grad={self.requires_grad}"
