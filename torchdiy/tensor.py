@@ -22,9 +22,6 @@ class Tensor:
         out = Tensor(self.data + other.data, (self, other), '+')
 
         def _backward():
-            # print('self.grad = ', self.grad)
-            # print('other.grad = ', other.grad)
-            # print('out.grad = ', out.grad, 'op=', out._op)
             self.grad += out.grad
             other.grad += out.grad
         out._backward = _backward
@@ -33,13 +30,9 @@ class Tensor:
 
     def __mul__(self, other):
         other = other if isinstance(other, Tensor) else Tensor(np.zeros(self.shape)+other) # 讓維度一致
-        # other = other if isinstance(other, Tensor) else Tensor(other)
         out = Tensor(self.data * other.data, (self, other), '*')
 
         def _backward():
-            # print('self.shape=', self.shape)
-            # print('other.shape=', other.shape)
-            # print('out.shape=', out.shape)
             self.grad += other.data * out.grad
             other.grad += self.data * out.grad
                         
@@ -120,9 +113,7 @@ class Tensor:
         log_probs = self.log() # log (q)
         zb = yb*log_probs # yb = p; z=p*log(q)
         outb = zb.sum(axis=1)
-        # print('zb=', zb, '\noutb=', outb)
         loss = -outb.sum()  # cross entropy loss
-        # print('loss=', loss)
         return loss # 本函數不用指定反傳遞，因為所有運算都已經有反傳遞了，所以直接呼叫 loss.backward() 就能反傳遞了
 
     def backward(self):
@@ -141,7 +132,6 @@ class Tensor:
         # go one variable at a time and apply the chain rule to get its gradient
         self.grad = 1
         for v in reversed(topo):
-            #print(v)
             v._backward()
 
     def __neg__(self): # -self
