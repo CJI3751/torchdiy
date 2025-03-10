@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="torchdiy",   # 專案名稱
-    version="1.3.0", # 版本號
+    version="1.4.0", # 版本號
     packages=find_packages(),  # 包含的程式碼目錄
     description="A hobby project just like torch for learning how to design a deep learning framework.",
     long_description=open('README.md').read(),  # 專案的詳細描述
