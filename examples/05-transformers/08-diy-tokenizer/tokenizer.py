@@ -116,8 +116,8 @@ class BPETokenizer(BaseTokenizer):
         tokens = [self.id_to_token[id] for id in token_ids]
         return "".join(tokens).replace("Ġ", " ")
 
+""" 這個是錯的, t5 的 tokenizer 沒那麼簡單
 class SentencePieceTokenizer(BaseTokenizer):
-    """實作 SentencePiece Tokenizer"""
 
     def __init__(self, model_name: str = "t5-small"):
         super().__init__(model_name)
@@ -125,7 +125,6 @@ class SentencePieceTokenizer(BaseTokenizer):
         self.load_vocab()
 
     def load_vocab(self):
-        """下載 tokenizer.json"""
         import requests
         response = requests.get(self.tokenizer_url)
         if response.status_code != 200:
@@ -135,29 +134,28 @@ class SentencePieceTokenizer(BaseTokenizer):
         self.id_to_token = {v: k for k, v in self.token_to_id.items()}
 
     def encode(self, text):
-        """直接查找詞彙表"""
         tokens = text.lower().split()
         return [self.token_to_id.get(token, self.token_to_id.get("<unk>")) for token in tokens]
 
     def decode(self, token_ids):
         return " ".join([self.id_to_token[id] for id in token_ids])
+"""
 
 def get_tokenizer(model_name: str):
     if "bert" in model_name or "roberta" in model_name:
         return WordPieceTokenizer(model_name)
-    elif "gpt2" in model_name or "t5" in model_name:
+    elif "gpt2" in model_name: # or "t5" in model_name:
         return BPETokenizer(model_name)
-    elif "t5" in model_name or "albert" in model_name:
-        return SentencePieceTokenizer(model_name)
+    # elif "t5" in model_name or "albert" in model_name:
+    #     return SentencePieceTokenizer.load_from_json("https://huggingface.co/google-t5/t5-base/blob/main/tokenizer.json") # SentencePieceTokenizer(model_name)
     else:
         raise ValueError("Unsupported model type")
 
 tokenizer = get_tokenizer("gpt2") # BPE
 print(tokenizer.encode("Hello world! GPT-2 is amazing."))
 
-
-# tokenizer = get_tokenizer("google-t5/t5-base") # Unigram SentencePiece
-# print(tokenizer.encode("Hello world! GPT-2 is amazing."))
-
 tokenizer = get_tokenizer("google-bert/bert-base-uncased")
-print(tokenizer.encode("Hello world! GPT-2 is amazing."))
+print(tokenizer.encode("Hello world! BERT is amazing."))
+
+#tokenizer = get_tokenizer("google-t5/t5-base") # Unigram SentencePiece
+#print(tokenizer.encode("Hello world! GPT-2 is amazing."))
