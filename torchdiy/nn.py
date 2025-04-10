@@ -8,9 +8,9 @@ from . import cnn
 from . import dropout
 # from . import rnn_deepseek
 from . import rnn
-from . import gru
+# from . import gru
 from . import attention
-from . import transformer
+from . import transformers
 from . import embed
 
 functional = nn.functional
@@ -34,5 +34,5 @@ LSTM = nn.LSTM
 Embedding = embed.Embedding
 
 MultiheadAttention = attention.MultiheadAttention
-TransformerDecoderLayer = transformer.TransformerDecoderLayer
-TransformerDecoder = transformer.TransformerDecoder
+TransformerDecoderLayer = nn.TransformerDecoderLayer
+TransformerDecoder = nn.TransformerDecoder

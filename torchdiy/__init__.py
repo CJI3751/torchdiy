@@ -11,4 +11,4 @@ from . import more
 from .tensor import Tensor
 from .loss import logsumexp
 
-__all__ = ['nn', 'optim', 'utils', 'logsumexp', 'Tensor']
+__all__ = ['nn', 'optim', 'utils', 'logsumexp', 'Tensor', 'transformers']
